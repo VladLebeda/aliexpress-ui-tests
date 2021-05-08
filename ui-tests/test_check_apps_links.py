@@ -4,7 +4,6 @@
 
 from pages.aliexpress import MainPage
 
-
 def test_check_apps_download_links(web_browser):
     """ Make sure apps download links are clickable and have proper addresses """
 
@@ -12,7 +11,6 @@ def test_check_apps_download_links(web_browser):
     page = MainPage(web_browser)
     page.welcoming_popup_close_button.click()
     page.get_apps_button.click()
-    #assert page.android_app_download_button.is_visible(), "Wrong page, or page didn't load!" #TODO properly later
 
     # Checking if iphone button is clickable and redirects to the proper page (and it is available)
     page.iphone_app_download_button.click()
