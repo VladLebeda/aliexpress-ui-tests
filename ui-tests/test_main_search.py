@@ -4,6 +4,7 @@
 
 from pages.aliexpress import MainPage
 
+
 def test_search_autocomplete(web_browser):
     """ Make sure search field autocompletes the key word"""
 
@@ -16,7 +17,6 @@ def test_search_autocomplete(web_browser):
     for autocomple_text in page.autocomplete_search_items.get_text():
         msg = 'Wrong autocomplete for the keyword "{}"'.format(autocomple_text)
         assert keywords in autocomple_text, msg
-        # assert 'toyota' in autocomple_text, msg - To make it XFAIL.
 
 
 def test_check_main_search(web_browser):

@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- encoding=utf8 -*-
 
-import time
 from pages.aliexpress import MainPage
+
 
 def test_add_item_to_cart(web_browser):
     """ Make sure user can add item to the cart """
@@ -19,15 +19,16 @@ def test_add_item_to_cart(web_browser):
     page.finish_login_button.click()
     page.wait_page_loaded()
 
-    # TODO Disabled, because aliexpress restricts accounts without linked phone number, find workaround!
+    """ Disabled, because aliexpress restricts accounts without linked phone number, find workaround!
     # Logging into existing account (credentials.py)
-    #page.user_account_button.click()
-    #page.sign_in_button.click()
-    #page.email_login_field.send_keys()
-    #page.password_login_field.send_keys()
-    #page.finish_login_button.click()
+    page.user_account_button.click()
+    page.sign_in_button.click()
+    page.email_login_field.send_keys()
+    page.password_login_field.send_keys()
+    page.finish_login_button.click()
+    """
 
-    page.main_search = 'car'
+    page.main_search = 'psi connector'  # That's PSI as pressure (not as psionic), search word with stable results
     page.search_start_button.click()
     page.orders_number_sort_by.click()
     page.wait_page_loaded()
@@ -41,6 +42,7 @@ def test_add_item_to_cart(web_browser):
     page.searched_found_items_gallery[0].click()
     page.switch_to_new_tab()
 
+    """ Not a stable decision, find workaround!
     # Can't add some items to the cart without tagging options (clothes size, color, origin country, etc).
     # Each item can have different options, and search results are unpredictable.
     # AND these option can be either img or txt, each needing different locators
@@ -57,21 +59,17 @@ def test_add_item_to_cart(web_browser):
         page.txt_ordering_optn_four.scroll_to_element().click()
     except:
         pass
-    time.sleep(10000)
+    """
     page.add_to_cart_main.click()
     page.go_to_cart_after_adding.click()
-    first_cart_item_price = page.item_checkout_price.get_text()[0]
 
     # Asserting that the price is the same as well as the item itself
-    assert first_listing_price == first_cart_item_price, "Wrong price of a single added item in the cart!"
-    # Similar assertion of item's title
-    assert first_listing_title == first_cart_item_title, "Wrong title of a single added item in the cart!"
+    assert first_listing_price == page.item_checkout_price.get_text()[0], "Wrong price of a single added item in the " \
+                                                                          "cart! "
 
-    time.sleep(10000)
+    # For some reason aliexpress has different listing and cart titles for the same item
+    # I am going to get the longest word from the first title and assert its presence in the second
+    longest_listing_title_word = max(first_listing_title, key=len)
 
-
-
-
-
-
-
+    assert longest_listing_title_word in page.first_cart_item_title.get_text()[0], "Wrong title of a single added " \
+                                                                                   "item in the cart! "

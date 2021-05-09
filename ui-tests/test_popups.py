@@ -5,6 +5,7 @@
 from selenium.common.exceptions import NoSuchElementException
 from pages.aliexpress import MainPage
 
+
 def test_welcoming_popup(web_browser):
     """ Make sure welcoming popup is shown and correct"""
 
@@ -16,11 +17,11 @@ def test_welcoming_popup(web_browser):
 
     # After allowing notifications via allow button new window opens up
     page.welcoming_popup_allow_button.click()
-    main_page_window = page.switch_to_new_tab() # Storing main window to switch back to it later
 
     # Asserting that new window has proper message
-    assert page.welcoming_popup_new_window_desc.get_text() == "Разрешить уведомления", "Wrong pop-up (new window) title!"
-    #page.switch_back_from_new_tab(main_page_window) # Switching back for now, need to fix accept_notifications() method later
+    page.switch_to_new_tab()
+    assert page.welcoming_popup_new_window_desc.get_text() == "Разрешить уведомления", "Wrong pop-up (new window) " \
+                                                                                       "title! "
 
 
 def test_coupon_popup(web_browser):
@@ -65,15 +66,14 @@ def test_accept_adult_popup(web_browser):
     assert page.adult_popup_title.get_text() == "You must be at least 18 years of age to enter this section of " \
                                                 "AliExpress.", "Wrong adult popups message! "
 
-
     page.adult_popup_accept_button.click()
 
     # If previous button is no longer clickable, adult pop-up was successfully closed
     # Need a 'try' block to avoid errors in report
     try:
         assert not page.adult_popup_accept_button.is_visible(), "Adult pop-up wasn't closed by age confirmation!"
-    except NoSuchElementException as e:
-        pass
+    except NoSuchElementException:
+        pass  # I expect that error, it is needed for assertion
 
 
 def test_dismissing_adult_popup(web_browser):
