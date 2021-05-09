@@ -83,11 +83,19 @@ class WebPage(object):
         return original_window
 
     def switch_back_from_new_tab(self, original_window):
-        """Switch from the new tab back to the original page."""
+        """ Switch from the new tab back to the original page. """
 
         self._web_driver.close()
         self._web_driver.switch_to.window(original_window)
 
+    """ Doesn't work for welcoming pop-up new window alert, NoAlertPresentException, fix later
+     
+    def accept_notifications(self):
+        self._web_driver.switch_to.alert.accept()
+
+    def dismiss_notifications(self):
+        self._web_driver.switch_to.alert.dismiss()
+    """
     def get_current_url(self):
         """ Returns current browser URL. """
 
