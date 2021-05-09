@@ -88,7 +88,7 @@ class WebPage(object):
         self._web_driver.close()
         self._web_driver.switch_to.window(original_window)
 
-    """ Doesn't work for welcoming pop-up new window alert, NoAlertPresentException, fix later
+    """ Doesn't work for welcoming pop-up new window alert, NoAlertPresentException, find workaround!
      
     def accept_notifications(self):
         self._web_driver.switch_to.alert.accept()
@@ -96,6 +96,7 @@ class WebPage(object):
     def dismiss_notifications(self):
         self._web_driver.switch_to.alert.dismiss()
     """
+
     def get_current_url(self):
         """ Returns current browser URL. """
 

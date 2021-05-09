@@ -103,7 +103,6 @@ class MainPage(WebPage):
     searched_found_items_gallery = ManyWebElements(xpath='//div[@class="place-container"]/a/img')
     searched_found_items_list = ManyWebElements(xpath='//div[@class="product-img"]/a/img')
 
-
     # Titles for items listed after successful search of picking category
     titles_searched_found_items = ManyWebElements(xpath='//a[@class="item-title"]')
 
