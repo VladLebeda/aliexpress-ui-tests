@@ -72,7 +72,7 @@ def test_accept_adult_popup(web_browser):
     # Need a 'try' block to avoid errors in report
     try:
         assert not page.adult_popup_accept_button.is_visible(), "Adult pop-up wasn't closed by age confirmation!"
-    except NoSuchElementException:
+    except NoSuchElementException as e:
         pass
 
 

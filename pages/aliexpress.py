@@ -41,6 +41,9 @@ class MainPage(WebPage):
     # Hot words, situated below the meain search bar. Unpredictable, they change constantly
     first_hot_word = WebElement(xpath='//div[@class="hot-words"]/a[1]')
 
+    # Title of the aliexpress logo slogan, main banner in the top left corner
+    logo_slogan_title = WebElement(xpath='//span[@class="logo-slogan"]')
+
 
     """ Account actions: """
 
@@ -71,6 +74,15 @@ class MainPage(WebPage):
 
     # English language option button in language selection
     english_language_button = WebElement(xpath='//a[@data-locale="en_US"]')
+
+    # Spanish language option button in language selection
+    spanish_language_button = WebElement(xpath='//a[@data-locale="es_ES"]')
+
+    # Korean language option button in language selection
+    korean_language_button = WebElement(xpath='//a[@data-locale="ko_KR"]')
+
+    # Turkish language option button in language selection
+    turkish_language_button = WebElement(xpath='//a[@data-locale="tr_TR"]')
 
     # Current currency button, needed to be clicked to be changed
     current_currency_button = WebElement(xpath='//div[@data-role="switch-currency"]')
