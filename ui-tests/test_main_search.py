@@ -41,7 +41,7 @@ def test_check_main_search(web_browser):
     # Verifying visibility of found items, should be 60 for any popular aliexpress search.
     # This number is for one full page, both for 'list' and 'set' items view options.
     # If all 60 elements need to be asserted, don't forget to .scroll_down(), or only 8 will load.
-    assert page.searched_found_items.count() > 0, "No items present after the search!"
+    assert page.searched_found_items_gallery.count() > 0, "No items present after the search!"
 
     # Verifying that search result yields at least ONE item relevant to the keyword
     # Can't verify ALL titles, because some of them will always be a synonym, like Wheel - Roller
@@ -73,7 +73,7 @@ def test_russian_search_in_english_lang(web_browser):
     assert keywords[1] in page.russian_corrected_search_word.get_text(), "Russian word in english wasn't recognised!"
 
     # Verifying that at least one item is found
-    assert page.searched_found_items.count() > 0, "No items present after the search!"
+    assert page.searched_found_items_gallery.count() > 0, "No items present after the search!"
 
     # Verifying that search result yields at least ONE item relevant to the keyword
     # (either translated [1] or corrected [2], I've encountered both)
