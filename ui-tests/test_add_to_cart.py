@@ -19,7 +19,7 @@ def test_add_item_to_cart(web_browser):
     page.finish_login_button.click()
     page.wait_page_loaded()
 
-    # TODO Disabled, because aliexpress restricts accounts without linked phone number, find workaround
+    # TODO Disabled, because aliexpress restricts accounts without linked phone number, find workaround!
     # Logging into existing account (credentials.py)
     #page.user_account_button.click()
     #page.sign_in_button.click()
