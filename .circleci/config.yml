@@ -25,20 +25,13 @@ jobs:
 
       - run:
           command: |
-            sudo apt-get install python3.8-venv
-            python3.8 -m venv venv
-            . venv/bin/activate
             pip install -r requirements.txt
             
       - save_cache:
           paths:
-            - ./venv
+            - .
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-      - run:
-          command: 
-            python3.8 -m venv venv
-            . venv/bin/activate
       - run:
           command:       
             python3.8 -m pytest -v --driver Chrome
