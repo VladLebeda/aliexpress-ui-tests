@@ -1,13 +1,13 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.4.0 # Latest as of 11.05.21
+  python: circleci/python@1.4.0
   browser-tools: circleci/browser-tools@1.1.3  
 
 jobs:
   build:
     docker:
-      - image: 'cimg/node:13.12-browser'
+      - image: 'cimg/node:16.1.0-browsers'
       
     executor: python/default
     
@@ -20,7 +20,7 @@ jobs:
       - restore_cache: # Download and cache dependencies
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
+            # Fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
