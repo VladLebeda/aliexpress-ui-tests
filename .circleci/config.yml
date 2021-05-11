@@ -12,6 +12,10 @@ jobs:
     executor: python/default
     
     steps:
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+
       - python/install-packages:
           pkg-manager: pip
       - python/install-packages:
@@ -21,9 +25,8 @@ jobs:
           args: pytest
           pkg-manager: pip
           pypi-cache: false
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
-      - checkout
+
+
 
       - run:
           command: 
