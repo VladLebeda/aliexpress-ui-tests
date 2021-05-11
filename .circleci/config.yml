@@ -25,10 +25,7 @@ jobs:
 
       - run:
           command: |
-            # sudo apt-get install python3.8-venv
-            pip install --user --ignore-installed --upgrade --verbose virtualenv
-            ln -s ~/Library/Python/3.8/bin/virtualenv /usr/local/bin/virtualenv
-
+            sudo apt-get install python3.8-venv
             python3.8 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
